@@ -1,0 +1,72 @@
+#box_content ul {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+#box_content ul li {
+    position: relative;
+    min-height: 80px;
+    overflow: hidden;
+
+}
+
+#box_content ul li .avatar img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+#box_content ul li .msg {
+    top: -10px;
+    margin: 8px;
+    min-height: 80px;
+}
+
+#box_content ul li::after {
+    clear: both;
+    content: "";
+    display: inline-block;
+}
+
+#box_content ul li .msg .msg-text {
+    background-color: #6C6C6C;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+#box_content ul li .msg time {
+    float: right;
+    color: #ccc;
+}
+
+#box_content ul li.other .avatar {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* 用户消息展示 */
+#box_content ul li.other .msg {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 45px;
+    margin-top: 13px;
+}
+
+
+
+#box_content ul li.self .avatar {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+/* 加盟商消息展示 */
+#box_content ul li.self .msg {
+    margin-top: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 45px;
+}

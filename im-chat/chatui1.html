@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IM聊天</title>
+    <style>
+        .Input_Box {
+            width: 100%;
+            min-height: 102px;
+            border: 1px solid #ccc;
+            transition: border linear .2s, box-shadow linear .5s;
+            -moz-transition: border linear .2s, -moz-box-shadow linear .5s;
+            -webkit-transition: border linear .2s, -webkit-box-shadow linear .5s;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            background-color: #fff;
+            /* overflow: hidden; */
+            -moz-box-shadow: 0 0 5px #ccc;
+            -webkit-box-shadow: 0 0 5px #ccc;
+            box-shadow: 0 0 5px #ccc;
+        }
+
+        .Input_text {
+            width: 99%;
+            /* min-height: 111px; */
+            height: 85px;
+            padding: 5px;
+            /* outline: none; */
+            border: 0px solid #fff;
+            resize: none;
+            font: 13px "微软雅黑", Arial, Helvetica, sans-serif;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            overflow-y: auto;
+        }
+        #words_list li:nth-of-type(odd){ background:#00ccff;}
+        #words_list li:nth-of-type(even){ background:#ffcc00;}
+
+        .listing_data li{
+            padding: 10px;
+        }
+        .listing_data li .listing_container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .listing_data li .listing_container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .listing_data li .listing_container .listing_img{
+            border: 1px solid #fd1f1f6e;
+        }
+        .listing_data li .listing_container .listing_img img{
+            width: 80px;
+        }
+        .listing_data li .listing_container .listing_info{
+            display: flex;
+            flex-direction: column;           
+            width: 40%;
+        }
+        .listing_data li .listing_container .listing_info p{
+            padding-bottom: 20px;
+        }
+        .send_btn{
+            border-radius: 5px;
+            box-shadow: 1px 2px 3px 1px;
+        }
+        .li_btn{
+            border-radius: 5px;
+            box-shadow: 2px 1px 3px 1px lightgrey;
+        }
+    </style>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="chatui1.css">
+    <link rel="stylesheet" href="chatrecored.css">
+    <script src="./jquery-3.1.1.js"></script>
+    <script src="./layui/layui.all.js"></script>
+    <script src="./jquery.qqFace.js"></script>
+    <script src="./chatui1.js"></script>
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="top">
+            <!-- <div class="top-left">
+                <div class="header"></div>
+                <div class="search">
+                    <input type="text">
+                    <i class="icon-sear"></i>
+                </div>
+            </div>
+            <div class="top-type">
+                <a href="#" class="news icon-site"></a>
+                <a href="#" class="friend icon-site"></a>
+                <a href="#" class="file icon-site"></a>
+            </div>
+            <div class="top-right">
+                <i class="ic-menu ic-same"></i>
+                <i class="ic-shrink ic-same"></i>
+                <i class="ic-boost ic-same"></i>
+                <i class="ic-close ic-same"></i>
+            </div> -->
+            <p>WELCOME</p>
+        </div>
+        <div class="box">
+            <!-- CHAT LIST -->
+            <div style="width: 250px;position: absolute;">用户：</div>
+            <ul class="chat-list">
+                <!-- <li onclick="list_detail()">
+                    <div class="list-box">
+                        <img class="chat-head" src="./img/chat_cloud.jpg" alt="">
+                        <div class="chat-rig">
+                            <div class="title">
+                                <p>咨询</p>
+                                <p>·</p>
+                                <p>yikechang</p>
+                                <div>1月30日</div>
+                            </div>
+                            <div class="text">我叫尚晓</div>
+                            <div class="text">万象天成C座306</div>
+                        </div>
+                    </div>
+                </li> -->
+            </ul>
+            <div style="width: 250px;position: absolute;margin-top: 280px;">客服台：</div>
+            <ul class="chat-list-customer">
+                <!-- <li>
+                    <div class="list-box">
+                        <img class="chat-head" src="./img/chat_cloud.jpg" alt="">
+                        <div class="chat-rig">
+                            <div class="title">
+                                <p>咨询</p>
+                                <p>·</p>
+                                <p>yikechang</p>
+                                <div>1月30日</div>
+                            </div>
+                            <div class="text">我叫尚晓</div>
+                            <div class="text">万象天成C座306</div>
+                        </div>
+                    </div>
+                </li> -->
+            </ul>
+            <div class="box-right">
+                <div class="recvfrom">
+                    <!-- UESER ROOM -->
+                    <div class="nav-top">
+                        <!-- <div class="room_img">
+                            <img src="./img/chat_cloud.jpg " alt="" srcset="">
+                        </div>
+                        <div class="room_detail">
+                            <div>【慢·寓-挪威森林】大床/落地窗户/新百莞城/万象城</div>
+                            <div><span>咨询</span><span>·</span><span>1月10日-1月11日</span></div>
+                        </div> -->
+                    </div>
+                    <!-- CHAT CONTENT -->
+                    <div class="news-top">
+                        <ul id="chat_ul">
+                            <!-- <li class="other">
+                                <div class="avatar"><img src="./img/sd.jpg" alt=""></div>
+                                <div class="msg">
+                                    <p class="msg-name">宋温暖</p>
+                                    <p class="msg-text">请接下这个活 <emoji class="pizza"></emoji>
+                                    </p>
+                                    <time>20:18</time>
+                                </div>
+                            </li>
+                            <li class="self">
+                                <div class="avatar"><img src="./img/chat.jpg" alt=""></div>
+                                <div class="msg">
+                                    <p class="msg-name">安安安</p>
+                                    <p class="msg-text">请接下这个下这个活请接下接下这个活请接下接下这个活请接下下这个活请接下这个活<emoji class="pizza">
+                                        </emoji>
+                                    </p>
+                                    <time>20:18</time>
+                                </div>
+                            </li> -->
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="sendto">
+                    <!--<div class="but-nav">
+                        <ul>
+                            <li class="font"></li>
+                            <li id="emotion" class="face"></li>
+                            <li class="cut"></li>
+                            <li class="page"></li>
+                            <li class="old"></li>
+                        </ul>
+                    </div>
+                    <div class="but-text">
+                        <textarea name="" id="send_txt" cols="110" rows="6" onkeydown=keydown(chartid)></textarea>
+                        <a href="#" class="button" onclick="send(chartid)">发送</a>
+                    </div> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script>
+
+</script>
+</html>
